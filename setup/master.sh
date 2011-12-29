@@ -28,7 +28,8 @@ groupadd puppet
 mkdir -p /etc/puppet/{manifests,modules,ssl}
 
 # create puppet users
-puppet master --mkusers --verbose --no-daemonize --onetime
+puppet master --mkusers --verbose
+sleep 10
 killall puppet
 
 # create supervisor config for puppet master
