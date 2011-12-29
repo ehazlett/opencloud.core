@@ -1,13 +1,13 @@
 #!/bin/sh
 #
-#  Sets up the OpenCloud master server
+#  Sets up the OpenCloud node
 #
 
 if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit; fi
 
 # install dependencies
 apt-get update && apt-get -y upgrade
-apt-get -y install build-essential irb libmysql-ruby libmysqlclient-dev libopenssl-ruby libreadline-ruby rdoc ri ruby ruby-dev rubygems supervisor
+apt-get -y install build-essential irb libopenssl-ruby libreadline-ruby rdoc ri ruby ruby-dev rubygems supervisor
 
 # install facter
 wget http://downloads.puppetlabs.com/facter/facter-1.6.1.tar.gz
@@ -24,29 +24,14 @@ cd ../ ; rm -rf puppet*
 # create puppet group
 groupadd puppet
 
-# create puppet dir structure
-mkdir -p /etc/puppet/manifests
-mkdir -p /etc/puppet/modules
-mkdir -p /etc/puppet/ssl
-
-# create puppet users
-puppet master --mkusers --verbose
-sleep 10
-killall puppet
-
 # create supervisor config for puppet master
-echo "[program:puppet-master]
-command=puppet master
+echo "[program:puppet-agent]
+command=/usr/bin/puppet agent
   --verbose
   --no-daemonize
-autorestart=true
 user=root
-directory=/etc/puppet
-stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-master.conf
+stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-agent.conf
 supervisorctl update
-
-# update hosts
-sed -i 's/^127\.0\.0\.1\s+*/127\.0\.0\.1    puppet /g' /etc/hosts
 
 echo " done.\n"
 
