@@ -25,7 +25,9 @@ cd ../ ; rm -rf puppet*
 groupadd puppet
 
 # create puppet dir structure
-mkdir -p /etc/puppet/{manifests,modules,ssl}
+mkdir -p /etc/puppet/manifests
+mkdir -p /etc/puppet/modules
+mkdir -p /etc/puppet/ssl
 
 # create puppet users
 puppet master --mkusers --verbose
