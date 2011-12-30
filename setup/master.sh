@@ -3,6 +3,8 @@
 #  Sets up the OpenCloud master server
 #
 
+PUPPET_CONF_DIR=`dirname $(pwd)`/puppet
+
 if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit; fi
 
 # install dependencies
@@ -24,10 +26,12 @@ cd ../ ; rm -rf puppet*
 # create puppet group
 groupadd puppet
 
-# create puppet dir structure
-mkdir -p /etc/puppet/manifests
-mkdir -p /etc/puppet/modules
+# create puppet directories
 mkdir -p /etc/puppet/ssl
+
+# symlink config
+ln -sf  $PUPPET_CONF_DIR/manifests /etc/puppet/manifests
+ln -sf  $PUPPET_CONF_DIR/modules /etc/puppet/modules
 
 # create puppet users
 puppet master --mkusers --verbose
