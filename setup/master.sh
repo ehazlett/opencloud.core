@@ -49,5 +49,5 @@ supervisorctl update
 # update hosts
 sed -i 's/^127\.0\.0\.1\s+*/127\.0\.0\.1    puppet /g' /etc/hosts
 
-echo " done.\n"
+echo "OpenCloud master setup complete."
 
