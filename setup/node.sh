@@ -1,9 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 #
 #  Sets up the OpenCloud node
 #
 
+function show_help {
+  echo "Usage: $0 <puppet_host>"
+  exit
+}
+
 if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit; fi
+
+if [ $1 == ""] ; then show_help ; fi
 
 # install dependencies
 apt-get update && apt-get -y upgrade
@@ -33,6 +40,12 @@ user=root
 stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-agent.conf
 
 supervisorctl update
+
+if [ `grep puppet /etc/hosts` != ""]; then
+  echo "Warning: Puppet host previously setup.  Updating."
+else
+  echo "\n$1    puppet\n" >> /etc/hosts
+fi
 
 echo " done.\n"
 
