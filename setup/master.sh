@@ -43,6 +43,7 @@ autorestart=true
 user=root
 directory=/etc/puppet
 stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-master.conf
+
 supervisorctl update
 
 # update hosts

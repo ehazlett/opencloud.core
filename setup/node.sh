@@ -31,6 +31,7 @@ command=/usr/bin/puppet agent
   --no-daemonize
 user=root
 stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-agent.conf
+
 supervisorctl update
 
 echo " done.\n"
