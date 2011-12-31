@@ -1,6 +1,7 @@
 node base {
   include "common"
   include "ntp"
+  include "syslog::client"
 }
 
 node 'opencloud-monitor' inherits base {
@@ -8,6 +9,5 @@ node 'opencloud-monitor' inherits base {
 }
 
 node default inherits base {
-
 }
 
