@@ -1,0 +1,5 @@
+[program:opencloud-syslog-server]
+command=java -jar graylog2-server.jar 
+directory=<%= graylog_server_dir %>
+user=root
+stopsignal=QUIT

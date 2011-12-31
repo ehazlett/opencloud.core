@@ -1,0 +1,6 @@
+[program:opencloud-syslog]
+command=/usr/bin/ruby script/rails server
+    -e production -p 3001
+directory=<%= graylog_dir %>
+user=root
+stopsignal=QUIT

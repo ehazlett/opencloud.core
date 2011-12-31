@@ -12,7 +12,6 @@ class common {
     "curl",
     "git-core",
     "nagios-nrpe-server",
-    "ntp",
     "python-dev",
     "python-setuptools",
     "snmpd",
@@ -23,4 +22,12 @@ class common {
   Exec {
     path    => "${::path}",
   }
+
+  file { "common::opencloud_conf_dir":
+    ensure  => directory,
+    path    => "${common::opencloud_conf_dir}",
+    owner   => root,
+    group   => root,
+  }
+
 }
