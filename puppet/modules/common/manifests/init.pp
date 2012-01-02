@@ -11,7 +11,6 @@ class common {
     "build-essential",
     "curl",
     "git-core",
-    "nagios-nrpe-server",
     "python-dev",
     "python-setuptools",
     "snmpd",
