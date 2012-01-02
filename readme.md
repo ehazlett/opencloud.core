@@ -43,7 +43,7 @@ The Puppet agent will run every five minutes to check for updates.  Updated role
 
 Logging
 --------
-OpenCloud uses a fork of Graylog2 (github.com/ehazlett/graylog) for centralized syslogging.  Edit `/etc/opencloud/roles.yml` like the following:
+OpenCloud uses a fork of Graylog2 (https://github.com/ehazlett/graylog) for centralized syslogging.  Edit `/etc/opencloud/roles.yml` like the following:
 
 ```yaml
 - role: default
