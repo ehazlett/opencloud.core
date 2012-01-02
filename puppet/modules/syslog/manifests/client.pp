@@ -1,4 +1,6 @@
 class syslog::client {
+  require "common"
+
   $sys_logger = "172.16.0.11:514"
   
   service { "rsyslog":
