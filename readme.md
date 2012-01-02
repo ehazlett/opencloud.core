@@ -18,6 +18,16 @@ For all servers that will be a part of OpenCloud, run the `node.sh` setup script
 
 `$> sh setup/node.sh 10.0.0.5` -- replace `10.0.0.5` with the hostname/IP of your OpenCloud Puppet master.
 
+Once the `node.sh` setup is complete, you will need to authorize the node on the OpenCloud Puppet master.  On the master run the following:
+
+`$> puppet cert list`
+
+This should show the fqdn of the node.  If not, check your network settings to make sure the node can communicate with the master.
+
+Run the following to authorize the node:
+
+`$> puppet cert sign <fqdn>` -- replace `<fqdn>` by the hostname listed.
+
 OpenCloud Roles
 ----------------
 All OpenCloud server types are created using roles.  OpenCloud uses a custom Puppet Fact to query the roles for each system.  To set/add a role to a system, edit the Yaml file located in `/etc/opencloud/roles.yml`.  
