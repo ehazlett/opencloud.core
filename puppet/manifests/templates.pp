@@ -4,14 +4,13 @@ node base {
   include "syslog::client"
 }
 
-node 'opencloud-logging' inherits base {
-  include "syslog::server"
-}
-
-node 'opencloud-monitor' inherits base {
-  include "zenoss"
-}
-
 node default inherits base {
+  if 'logging' in $roles {
+    include "syslog::server"
+  }
+  if 'monitor' in $roles {
+    include "zenoss"
+  }
+    
 }
 

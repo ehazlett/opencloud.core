@@ -29,14 +29,14 @@ class common {
   service { "snmpd":
     ensure    => running,
   }
-
+  # opencloud conf dir
   file { "common::opencloud_conf_dir":
     ensure  => directory,
     path    => "${common::opencloud_conf_dir}",
     owner   => root,
     group   => root,
   }
-
+  # snmp config
   file { "common::snmp_conf":
     path    => "/etc/snmp/snmpd.conf",
     content => template("common/snmpd.conf.erb"),
@@ -44,6 +44,13 @@ class common {
     group   => root,
     require => Package["snmpd"],
     notify  => Service["snmpd"],
+  }
+  # puppet config
+  file { "common::puppet_conf":
+    path    => "/etc/puppet/puppet.conf",
+    content => template("common/puppet.conf.erb"),
+    owner   => root,
+    group   => root,
   }
 
 }

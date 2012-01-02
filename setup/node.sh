@@ -49,5 +49,8 @@ else
   echo "$1    puppet" >> /etc/hosts
 fi
 
+mkdir -p /etc/opencloud
+echo "- role: default" > /etc/opencloud/roles.yml
+
 echo "OpenCloud node setup complete."
 
