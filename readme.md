@@ -32,22 +32,22 @@ OpenCloud Roles
 ----------------
 All OpenCloud server types are created using roles.  OpenCloud uses a custom Puppet Fact to query the roles for each system.  To set/add a role to a system, edit the Yaml file located in `/etc/opencloud/roles.yml`.  
 
-For example, to add the `logging` role (in `/etc/opencloud/roles.yml`):
+For example, to add the `logger` role (in `/etc/opencloud/roles.yml`):
 
 ```yaml
 - role: default
-- role: logging
+- role: logger
 ```
 
 The Puppet agent will run every five minutes to check for updates.  Updated role definitions will be picked up at the same time.  To force a sync, run `sudo supervisorctl restart puppet-agent`.
 
-Logging
+Logger
 --------
 OpenCloud uses a fork of Graylog2 (https://github.com/ehazlett/graylog) for centralized syslogging.  Edit `/etc/opencloud/roles.yml` like the following:
 
 ```yaml
 - role: default
-- role: logging
+- role: logger
 ```
 
 Monitoring

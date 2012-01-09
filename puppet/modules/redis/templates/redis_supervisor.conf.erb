@@ -1,0 +1,5 @@
+[program:redis]
+command=/usr/local/bin/redis-server /etc/redis.conf
+directory=<%= redis_dir %>
+user=root
+stopsignal=QUIT

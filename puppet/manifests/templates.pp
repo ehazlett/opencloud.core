@@ -5,12 +5,16 @@ node base {
 }
 
 node default inherits base {
-  if 'logging' in $roles {
-    include "syslog::server"
+  if $roles {
+    if 'dashboard' in $roles {
+      include "redis"
+    }
+    if 'logger' in $roles {
+      include "syslog::server"
+    }
+    if 'webserver:nginx' in $roles {
+      include "nginx"
+    }
   }
-  if 'monitor' in $roles {
-    include "zenoss"
-  }
-    
 }
 
