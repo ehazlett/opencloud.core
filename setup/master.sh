@@ -9,7 +9,7 @@ if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit
 
 # install dependencies
 apt-get update && apt-get -y upgrade
-apt-get -y install build-essential irb libmysql-ruby libmysqlclient-dev libopenssl-ruby libreadline-ruby rdoc ri ruby ruby-dev rubygems supervisor
+apt-get -y install build-essential irb libmysql-ruby libmysqlclient-dev libopenssl-ruby libreadline-ruby psmisc rdoc ri ruby ruby-dev rubygems supervisor
 
 # install facter
 wget http://downloads.puppetlabs.com/facter/facter-1.6.1.tar.gz
