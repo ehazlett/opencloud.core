@@ -1,2 +1,10 @@
 [main]
-pluginsync = true
+  pluginsync = true
+
+[master]
+  allow_duplicate_certs = True
+  node_name = facter
+
+[agent]
+  node_name_fact = fqdn
+  runinterval = 300
