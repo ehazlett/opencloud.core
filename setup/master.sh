@@ -34,8 +34,10 @@ mkdir -p /etc/puppet/ssl
 cd $SETUP_DIR
 
 # symlink config
-ln -sf $PUPPET_CONF_DIR/manifests /etc/puppet/manifests
-ln -sf $PUPPET_CONF_DIR/modules /etc/puppet/modules
+if [ -e /etc/puppet/manifests ]; then echo "Warning: Renaming existing manifests directory to /etc/puppet/manifests.old" ; mv /etc/puppet/manifests /etc/puppet/manifests.old; fi
+if [ -e /etc/puppet/modules ]; then echo "Warning: Renaming existing modules directory to /etc/puppet/modules.old" ; mv /etc/puppet/modules /etc/puppet/modules.old; fi
+ln -sf $PUPPET_CONF_DIR/manifests/ /etc/puppet/manifests
+ln -sf $PUPPET_CONF_DIR/modules/ /etc/puppet/modules
 
 # puppet conf
 cp -f $SETUP_DIR/puppet.conf /etc/puppet/puppet.conf
