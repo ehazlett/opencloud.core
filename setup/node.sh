@@ -3,6 +3,8 @@
 #  Sets up the OpenCloud node
 #
 
+SETUP_DIR=`dirname $(pwd)`/setup
+
 function show_help {
   echo "Usage: $0 <puppet_host>"
   exit
@@ -30,6 +32,9 @@ cd ../ ; rm -rf puppet*
 
 # create puppet group
 groupadd puppet
+
+# puppet config
+cp -f $SETUP_DIR/puppet.conf /etc/puppet/puppet.conf
 
 # create supervisor config for puppet master
 echo "[program:puppet-agent]
