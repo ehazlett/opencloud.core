@@ -44,6 +44,18 @@ command=/usr/bin/puppet agent
 user=root
 stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-agent.conf
 
+# create initial puppet config
+echo "[main]
+  pluginsync = true
+
+[master]
+  allow_duplicate_certs = True
+  node_name = facter
+
+[agent]
+  node_name_fact = fqdn
+  runinterval = 300" > /etc/puppet/puppet.conf
+
 supervisorctl update
 
 # setup puppet host

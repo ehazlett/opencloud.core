@@ -39,8 +39,18 @@ if [ -e /etc/puppet/modules ]; then echo "Warning: Renaming existing modules dir
 ln -sf $PUPPET_CONF_DIR/manifests/ /etc/puppet/manifests
 ln -sf $PUPPET_CONF_DIR/modules/ /etc/puppet/modules
 
-# puppet conf
-cp -f $SETUP_DIR/puppet.conf /etc/puppet/puppet.conf
+# create initial puppet config
+echo "[main]
+  pluginsync = true
+
+[master]
+  allow_duplicate_certs = True
+  node_name = facter
+
+[agent]
+  node_name_fact = fqdn
+  runinterval = 300" > /etc/puppet/puppet.conf
+
 
 # create puppet users
 puppet master --mkusers --verbose
