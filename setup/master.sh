@@ -8,8 +8,6 @@ PUPPET_CONF_DIR=`dirname $(pwd)`/puppet
 
 if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit; fi
 
-PWD=`pwd`
-
 # install dependencies
 apt-get update && apt-get -y upgrade
 apt-get -y install build-essential irb libmysql-ruby libmysqlclient-dev libopenssl-ruby libreadline-ruby psmisc rdoc ri ruby ruby-dev rubygems supervisor
@@ -33,7 +31,7 @@ groupadd puppet
 # create puppet directories
 mkdir -p /etc/puppet/ssl
 
-cd $PWD
+cd $SETUP_DIR
 
 # symlink config
 ln -sf $PUPPET_CONF_DIR/manifests /etc/puppet/manifests
