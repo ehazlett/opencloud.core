@@ -33,9 +33,6 @@ cd ../ ; rm -rf puppet*
 # create puppet group
 groupadd puppet
 
-# puppet config
-cp -f $SETUP_DIR/puppet.conf /etc/puppet/puppet.conf
-
 # create supervisor config for puppet master
 echo "[program:puppet-agent]
 command=/usr/bin/puppet agent
