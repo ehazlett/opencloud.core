@@ -49,6 +49,7 @@ echo "[main]
 [master]
   allow_duplicate_certs = True
   node_name = facter
+  certname = puppet
 
 [agent]
   node_name_fact = fqdn
