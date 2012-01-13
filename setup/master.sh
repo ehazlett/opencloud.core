@@ -5,6 +5,9 @@
 
 SETUP_DIR=`dirname $(pwd)`/setup
 PUPPET_CONF_DIR=`dirname $(pwd)`/puppet
+HOSTNAME=`hostname -s`
+DOMAIN=`hostname -d`
+HOSTNAME_FQDN=`hostname -f`
 
 if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit; fi
 
@@ -51,6 +54,8 @@ echo "[main]
   node_name_fact = fqdn
   runinterval = 300" > /etc/puppet/puppet.conf
 
+# create cert
+puppet cert generate puppet --dns_alt_names=puppet.$DOMAIN,$HOSTNAME,$HOSTNAME_FQDN
 
 # create puppet users
 puppet master --mkusers --verbose
