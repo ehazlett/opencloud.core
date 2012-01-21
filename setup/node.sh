@@ -69,5 +69,3 @@ supervisorctl update
 
 echo "OpenCloud node setup complete."
 
-reboot
-
