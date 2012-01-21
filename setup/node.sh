@@ -15,7 +15,7 @@ if [ "$(id -u)" != "0" ]; then echo "Error: You must be root to run setup"; exit
 if [ -z $1 ] ; then show_help ; fi
 
 # install dependencies
-apt-get update && apt-get -y upgrade
+apt-get update
 apt-get -y install build-essential irb libopenssl-ruby libreadline-ruby rdoc ri ruby ruby-dev rubygems supervisor
 
 # install facter
