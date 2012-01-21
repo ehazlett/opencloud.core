@@ -53,7 +53,6 @@ echo "[main]
   node_name_fact = fqdn
   runinterval = 300" > /etc/puppet/puppet.conf
 
-supervisorctl update
 
 # setup puppet host
 PUPPET_HOST=`grep puppet /etc/hosts`
@@ -65,6 +64,8 @@ fi
 
 mkdir -p /etc/opencloud
 echo "- role: default" > /etc/opencloud/roles.yml
+
+supervisorctl update
 
 echo "OpenCloud node setup complete."
 
