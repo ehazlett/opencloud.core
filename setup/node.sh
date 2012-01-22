@@ -33,9 +33,11 @@ cd puppet* ; ruby install.rb --no-tests --no-rdoc --quick
 cd ../ ; rm -rf puppet*
 
 # create puppet group
+echo "Adding puppet group"
 groupadd puppet
 
 # create supervisor config for puppet master
+echo "Creating puppet-agent supervisor config"
 echo "[program:puppet-agent]
 command=/usr/bin/puppet agent
   --verbose
@@ -44,6 +46,7 @@ user=root
 stopsignal=QUIT" > /etc/supervisor/conf.d/puppet-agent.conf
 
 # create initial puppet config
+echo "Creating puppet.conf"
 echo "[main]
   pluginsync = true
 
@@ -57,6 +60,7 @@ echo "[main]
 
 
 # setup puppet host
+echo "Updating /etc/hosts"
 PUPPET_HOST=`grep puppet /etc/hosts`
 if [ -n "$PUPPET_HOST" ]; then
   echo "Warning: Puppet host previously setup.  Remove the entry from /etc/hosts for setup to configure."
@@ -64,6 +68,7 @@ else
   echo "$1    puppet" >> /etc/hosts
 fi
 
+echo "Creating default roles.yml"
 mkdir -p /etc/opencloud
 echo "- role: default" > /etc/opencloud/roles.yml
 
