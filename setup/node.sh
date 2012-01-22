@@ -16,21 +16,7 @@ if [ -z $1 ] ; then show_help ; fi
 
 # install dependencies
 apt-get update
-apt-get -y install build-essential irb libopenssl-ruby libreadline-ruby rdoc ri ruby ruby-dev rubygems supervisor
-
-# install facter
-echo "Installing facter"
-wget http://downloads.puppetlabs.com/facter/facter-1.6.1.tar.gz
-tar zxf facter*
-cd facter* ; ruby install.rb --no-tests --no-rdoc --quick
-cd ../ ; rm -rf facter*
-
-# install puppet
-echo "Installing puppet"
-wget http://puppetlabs.com/downloads/puppet/puppet-latest.tgz
-tar zxf puppet-latest.tgz
-cd puppet* ; ruby install.rb --no-tests --no-rdoc --quick &
-cd ../ ; rm -rf puppet*
+apt-get -y install build-essential irb libopenssl-ruby libreadline-ruby rdoc ri ruby ruby-dev rubygems supervisor puppet facter
 
 # create puppet group
 echo "Adding puppet group"
