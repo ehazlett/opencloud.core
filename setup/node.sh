@@ -21,7 +21,7 @@ apt-get -y install build-essential irb libopenssl-ruby libreadline-ruby rdoc ri 
 # install facter
 wget http://downloads.puppetlabs.com/facter/facter-1.6.1.tar.gz
 tar zxf facter*
-cd facter* ; sudo ruby install.rb
+cd facter* ; ruby install.rb --no-tests --no-rdoc
 cd ../ ; rm -rf facter*
 
 # install puppet
