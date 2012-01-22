@@ -29,7 +29,7 @@ cd ../ ; rm -rf facter*
 echo "Installing puppet"
 wget http://puppetlabs.com/downloads/puppet/puppet-latest.tgz
 tar zxf puppet-latest.tgz
-cd puppet* ; ruby install.rb --no-tests --no-rdoc --quick
+cd puppet* ; ruby install.rb --no-tests --no-rdoc --quick &
 cd ../ ; rm -rf puppet*
 
 # create puppet group
