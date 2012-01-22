@@ -27,7 +27,7 @@ cd ../ ; rm -rf facter*
 # install puppet
 wget http://puppetlabs.com/downloads/puppet/puppet-latest.tgz
 tar zxf puppet-latest.tgz
-cd puppet* ; sudo ruby install.rb
+cd puppet* ; sudo ruby install.rb --no-tests --no-rdoc
 cd ../ ; rm -rf puppet*
 
 # create puppet group
