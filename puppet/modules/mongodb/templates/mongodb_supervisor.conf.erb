@@ -1,0 +1,5 @@
+[program:mongodb]
+command=<%= mongodb_dir %>/bin/mongod --dbpath <%= mongodb_data_dir %> --rest
+directory=<%= mongodb_dir %>
+user=root
+stopsignal=QUIT

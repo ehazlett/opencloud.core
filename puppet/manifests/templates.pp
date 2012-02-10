@@ -15,6 +15,12 @@ node default inherits base {
     if 'webserver:nginx' in $roles {
       include "nginx"
     }
+    if 'redis' in $roles {
+      include "redis"
+    }
+    if 'mongodb' in $roles {
+      include "mongodb"
+    }
   }
 }
 
