@@ -4,7 +4,7 @@ Cloud management built on open source.  OpenCloud manages the scaffolding behind
 
 Getting Started
 ----------------
-OpenCloud has only been tested on Debian/Ubuntu -- others may work but the setup scripts are for Debian/Ubuntu only.  OpenCloud consists of three core nodes (these can be all on one if required, but it must have enough ram -- 2GB min):
+OpenCloud has only been tested on Debian/Ubuntu -- others may work but the setup scripts are for Debian/Ubuntu only.  OpenCloud consists of three core nodes (these can be all on one VM/machine if required, but it must have enough ram -- 2GB min):
 
 Puppet master
 --------------
