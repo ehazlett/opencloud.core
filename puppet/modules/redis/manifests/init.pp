@@ -1,3 +1,17 @@
+# Class: redis
+#
+# This module manages redis
+#
+# Parameters:
+#   n/a
+# Actions:
+#   Installs and configures Redis
+# Requires:
+#   n/a
+# Sample usage:
+#
+#   include redis
+#
 class redis {
   $redis_url = "http://redis.googlecode.com/files/redis-2.4.5.tar.gz"
   $redis_dir = "/opt/redis"
@@ -7,8 +21,8 @@ class redis {
 
   exec { "redis::wget_redis":
     cwd       => "/tmp",
-    command   => "wget ${redis_url} -O redis.tar.gz > ${common::opencloud_conf_dir}/redis_wget_redis",
-    creates   => "${common::opencloud_conf_dir}/redis_wget_redis",
+    command   => "wget ${redis_url} -O redis.tar.gz",
+    creates   => "/usr/local/bin/redis-server",
     notify    => Exec["redis::extract_redis"],
   }
   exec { "redis::extract_redis":
