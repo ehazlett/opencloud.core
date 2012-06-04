@@ -4,7 +4,7 @@ Cloud management built on open source.  OpenCloud manages the scaffolding behind
 
 Getting Started
 ----------------
-OpenCloud has only been tested on Debian/Ubuntu -- others may work but the setup scripts are for Debian/Ubuntu only.  OpenCloud consists of three core nodes (these can be all on one VM/machine if required, but it must have enough ram -- 2GB min):
+OpenCloud has only been tested on Debian/Ubuntu -- others may work but the setup scripts are for Debian/Ubuntu only.
 
 Puppet master
 --------------
@@ -28,33 +28,3 @@ Run the following to authorize the node:
 
 `$> puppet cert sign <fqdn>` -- replace `<fqdn>` by the hostname listed.
 
-OpenCloud Roles
-----------------
-All OpenCloud server types are created using roles.  OpenCloud uses a custom Puppet Fact to query the roles for each system.  To set/add a role to a system, edit the Yaml file located in `/etc/opencloud/roles.yml`.  
-
-For example, to add the `logger` role (in `/etc/opencloud/roles.yml`):
-
-```yaml
-- role: default
-- role: logger
-```
-
-The Puppet agent will run every five minutes to check for updates.  Updated role definitions will be picked up at the same time.  To force a sync, run `sudo supervisorctl restart puppet-agent`.
-
-Logger
---------
-OpenCloud uses a fork of Graylog2 (https://github.com/ehazlett/graylog) for centralized syslogging.  Edit `/etc/opencloud/roles.yml` like the following:
-
-```yaml
-- role: default
-- role: logger
-```
-
-Monitoring
------------
-OpenCloud uses Zenoss for system monitoring and reporting.  Edit `/etc/opencloud/roles.yml` like the following:
-
-```yaml
-- role: default
-- role: monitor
-```
