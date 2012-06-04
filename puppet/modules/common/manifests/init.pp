@@ -4,37 +4,22 @@ class common {
   $snmp_sys_location = "Default Location"
   $snmp_sys_contact = "Default Contact <root@localhost>"
 
-  define base_packages() {
-    package { "${name}":
-      ensure  => installed,
-    }
-  }
-
-  base_packages{[
-    "build-essential",
-    "curl",
-    "git-core",
-    "python-dev",
-    "python-setuptools",
-    "snmpd",
-    "snmp-mibs-downloader",
-    "supervisor",
-    "zip",
-  ]: }
-
   Exec {
     path    => "${::path}",
   }
 
+  if ! defined(Package["build-essential"]) { package { "build-essential": ensure => installed, } }
+  if ! defined(Package["curl"]) { package { "curl": ensure => installed, } }
+  if ! defined(Package["git-core"]) { package { "git-core": ensure => installed, } }
+  if ! defined(Package["python-dev"]) { package { "python-dev": ensure => installed, } }
+  if ! defined(Package["python-setuptools"]) { package { "python-setuptools": ensure => installed, } }
+  if ! defined(Package["snmpd"]) { package { "snmpd": ensure => installed, } }
+  if ! defined(Package["snmp-mibs-downloader"]) { package { "snmp-mibs-downloader": ensure => installed, } }
+  if ! defined(Package["supervisor"]) { package { "supervisor": ensure => installed, } }
+  if ! defined(Package["zip"]) { package { "zip": ensure => installed, } }
+
   service { "snmpd":
     ensure    => running,
-  }
-  # opencloud conf dir
-  file { "common::opencloud_conf_dir":
-    ensure  => directory,
-    path    => "${common::opencloud_conf_dir}",
-    owner   => root,
-    group   => root,
   }
   # snmp config
   file { "common::snmp_conf":
