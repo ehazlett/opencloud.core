@@ -53,25 +53,4 @@ class redis {
     mode      => 0770,
     require   => Exec["redis::extract_redis"],
   }
-  file { "redis::redis_conf":
-    path    => "/etc/redis.conf",
-    content => template("redis/redis.conf.erb"),
-    owner   => "root",
-    group   => "root",
-    mode    => 0644,
-  }
-  file { "redis::redis_supervisor":
-    path    => "/etc/supervisor/conf.d/redis.conf",
-    content => template("redis/redis_supervisor.conf.erb"),
-    owner   => "root",
-    group   => "root",
-    mode    => 0644,
-    require => Package["supervisor"],
-    notify  => Exec["redis::update_supervisor"],
-  }
-  exec { "redis::update_supervisor":
-    command     => "supervisorctl update",
-    require     => File["redis::redis_supervisor"],
-    refreshonly => true,
-  }
 }
